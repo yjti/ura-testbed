@@ -18,7 +18,7 @@
   </header>
 
   <main class="event-list" id="eventList"></main>
-
+  
   <script>
     // Live reload every 30 mins
     const CHECK_INTERVAL = 1800000; 
@@ -64,11 +64,31 @@
         card.setAttribute("data-status", event.status);
 
         const status = event.status;
-        const bgColor = status === "sold-out" ? "#d72c11" : "#02a630";
-        const labelColor = status === "sold-out" ? "#710000" : "";
-        const labelTextColor = status === "sold-out" ? "#ffffff" : "";
-        const labelText = status === "sold-out" ? "Sold Out" : "Sign-Ups Open";
-        const qrImage = status === "sold-out" ? event.soldOutQr : event.qr;
+        let bgColor = "#02a630"; // default (sign-ups open)
+        let labelColor = "";
+        let labelTextColor = "";
+        let labelText = "Sign-Ups Open";
+        let qrImage = event.qr;
+
+        if (status === "sold-out") {
+          bgColor = "#d72c11";
+          labelColor = "#710000";
+          labelTextColor = "#ffffff";
+          labelText = "Sold Out";
+          qrImage = event.soldOutQr;
+        } else if (status === "waitlist") {
+          bgColor = "#ff9500";
+          labelColor = "#b25c00";
+          labelTextColor = "#ffffff";
+          labelText = "Join Waitlist";
+          qrImage = event.qr; 
+        } else if (status === "information") {
+          bgColor = "#02a630";
+          labelColor = "";
+          labelTextColor = "";
+          labelText = "Information";
+          qrImage = event.qr; 
+        }
 
         card.innerHTML = `
           <div class="image-container">
@@ -77,7 +97,7 @@
           <div class="event-details">
             <div class="event-top">
               <div class="event-tags">
-                <span class="tag date">${formatDate(event.date)} – ${formatDate(event.endDate)}</span>
+                <span class="tag date">${formatDateRange(event.date, event.endDate)}</span>
                 <span class="tag type type-${event.type.toLowerCase().replace(/\s+/g, '-')}">
                   ${formatType(event.type)}
               </div>
@@ -95,8 +115,31 @@
 
         container.appendChild(card);
       });
-    }
+        const extraCard = document.createElement("div");
+        extraCard.className = "event-card special-card";
+        extraCard.innerHTML = `
+          <div class="special-card-content">
+            <div class="special-card-text">
+              <h2>Still looking?</h2>
+              <p>Scan the QR Code to view our full Fringe Events Calendar</p>
+            </div>
+            <div class="special-card-qr">
+              <img src="event-qr/qr-full-calendar.png" alt="Full Calendar QR" />
+            </div>
+          </div>
+        `;
+        container.appendChild(extraCard);
 
+    }
+    function formatDateRange(start, end) {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+
+      const startStr = formatDate(start);
+      const endStr = formatDate(end);
+
+      return startStr === endStr ? startStr : `${startStr} – ${endStr}`;
+    }
     function formatDate(dateStr) {
       const options = { day: '2-digit', month: 'short' };
       return new Date(dateStr).toLocaleDateString('en-GB', options);
