@@ -95,9 +95,10 @@ html, body {
   }
 
   header strong {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
     color: #070707;
     line-height: 1.2;
+    font-weight: 700;
   }
   
   .subtitle {
@@ -121,7 +122,7 @@ html, body {
   }
 
   .event-list {
-  margin-top: 220px;
+  margin-top: 240px;
   display: flex;
   flex-direction: column;
   gap: 36px;
