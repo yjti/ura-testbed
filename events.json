@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Waves of Wellness @ Marina Central",
+    "description": "Join Waves of Wellness 2025 in Marina Central for two weeks of free workouts, crafts and a special Stride & Seek Game.",
+    "image": "event-pictures/event1.jpeg",
+    "qr": "event-qr/qr1.png",
+    "soldOutQr": "event-qr/qr-sold-out.png",
+    "date": "2025-07-19",
+    "endDate": "2025-08-09",
+    "type": "Activity", 
+    "status": "available" 
+  },
+  {
+    "title": "URA-FOM Tour: Stewarding Nature & Heritage in Tanjong Pagar",
+    "description": "Explore how Tanjong Pagar evolved from a port town to green urban district while preserving its heritage and nature.",
+    "image": "event-pictures/event2.jpg",
+    "qr": "event-qr/qr2.png",
+    "soldOutQr": "event-qr/qr-sold-out.png",
+    "date": "2025-08-15",
+    "endDate": "2025-08-29",
+    "type": "Guided Tour",
+    "status": "sold-out"
+  },
+  {
+    "title": "Self-guided Toa Payoh Heritage Trail",
+    "description": "Explore Toa Payoh's iconic landmarks through a heritage trail. Visit us to redeem exclusive prizes (while stocks last)!",
+    "image": "event-pictures/event3.jpg",
+    "qr": "event-qr/qr3.png",
+    "soldOutQr": "event-qr/qr-sold-out.png",
+    "date": "2025-08-15",
+    "endDate": "2025-08-29",
+    "type": "Self Guided Tour",
+    "status": "available"
+  }
+]
