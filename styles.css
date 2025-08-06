@@ -206,6 +206,7 @@ html, body {
   margin: 0 0 8px;
   font-weight: 500;
   white-space: pre-line;
+  margin-right: 12px;
   line-height: 1.1;
 }
 
@@ -215,6 +216,7 @@ html, body {
   line-height: 1.4;
   color: #444;
   margin-top: 18px;
+  margin-right: 12px;
   white-space: pre-line;
 }
 
@@ -247,13 +249,13 @@ html, body {
 
 .event-top {
   position: absolute;
-  top: 64px;
+  top: 48px;
   left: 24px;
 }
 
 .event-middle {
   position: absolute;
-  top: 124px;
+  top: 108px;
   left: 38px;
   margin-right: 20px;
 }
@@ -263,7 +265,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(to right, #6b00b6, #fbd44c);
+  background: linear-gradient(to right, #4d0084, #fbd44c);
   border-radius: 20px;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
