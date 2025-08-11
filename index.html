@@ -50,20 +50,27 @@
 
     async function loadEvents() {
       const response = await fetch("events.json");
-      const events = await response.json();
+      const data = await response.json();
+      const events = data.events;
+      const cutoffDate = new Date(data.cutoffDate);
+
       const container = document.getElementById("eventList");
       const today = new Date();
 
       events.forEach(event => {
         const endDate = new Date(event.endDate + "T23:59:59");
+        const startDate = new Date(event.date + "T00:00:00");
 
         if (today > endDate) return; // Skip past events
+
+        if (startDate > cutoffDate) return;
 
         const card = document.createElement("div");
         card.className = "event-card";
         card.setAttribute("data-status", event.status);
 
         const status = event.status;
+        if (["remove"].includes(status)) return;
         let bgColor = "#02a630"; // default (sign-ups open)
         let labelColor = "";
         let labelTextColor = "";
@@ -129,6 +136,26 @@
           </div>
         `;
         container.appendChild(extraCard);
+
+        // Animate cards into view
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+              entry.target.classList.remove("animate-out");
+            } else {
+              entry.target.classList.remove("animate");
+              entry.target.classList.add("animate-out");
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+
+        // Observe each card
+        document.querySelectorAll('.event-card').forEach(card => {
+          observer.observe(card);
+        });
 
     }
     function formatDateRange(start, end) {
