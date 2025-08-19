@@ -471,3 +471,22 @@ html, body {
 
 .featured-dots .dot.is-active { background: #fff; }
 
+.featured-dots .dot.is-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  animation: dot-progress var(--carousel-interval, 6s) linear forwards;
+  z-index: 2;
+  opacity: 0.9;
+  transform-origin: left;
+}
+
+@keyframes dot-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
