@@ -177,22 +177,33 @@
       `;
 
       const slides = [...mount.querySelectorAll('.featured-slide')];
-      const dots   = [...mount.querySelectorAll('.dot')];
+      const dots   = [...mount.querySelectorAll('.featured-dots .dot')];
       let idx = 0, timer;
 
+            // ...existing code...
       const goto = (n) => {
+        // Remove is-active from current slide
         slides[idx].classList.remove('is-active');
-        dots[idx].classList.remove('is-active');
         idx = n;
+        // Add is-active to new slide
         slides[idx].classList.add('is-active');
-        dots[idx].classList.add('is-active');
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-complete', i < idx);
+          dot.classList.toggle('is-active', i === idx);
+          if (i > idx) {
+            dot.classList.remove('is-complete', 'is-active');
+          }
+        });
       };
+      // ...existing code...
 
       const start = () => { if (slides.length > 1) timer = setInterval(()=>goto((idx+1)%slides.length), intervalMs); };
       const stop  = () => clearInterval(timer);
 
       dots.forEach(d => d.addEventListener('click', () => { stop(); goto(+d.dataset.i); start(); }));
       document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+      
 
       start();
     }

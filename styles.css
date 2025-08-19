@@ -469,7 +469,17 @@ html, body {
     line-height: 1;
   }
 
-.featured-dots .dot.is-active { background: #fff; }
+/* ...existing code... */
+
+.featured-dots .dot.is-complete {
+  background: #fff;
+}
+
+.featured-dots .dot.is-active {
+  background: rgba(255,255,255,.5);
+  position: relative;
+  overflow: hidden;
+}
 
 .featured-dots .dot.is-active::after {
   content: '';
@@ -478,14 +488,15 @@ html, body {
   left: 0; top: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 20%;
   background: #fff;
-  animation: dot-progress var(--carousel-interval, 6s) linear forwards;
+  animation: dot-progress var(--carousel-interval, 15s) linear forwards;
   z-index: 2;
-  opacity: 0.9;
+  opacity: 1;
   transform-origin: left;
 }
 
+/* ...existing code... */
 @keyframes dot-progress {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
